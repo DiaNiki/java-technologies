@@ -64,7 +64,7 @@ public class DatabaseController {
         return database.query(String.format("delete from %s where %s", tableName, condition));
     }
 
-    @DeleteMapping(value = "/database/{tableLeftName}/product/{tableRightName}")
+    @GetMapping(value = "/database/{tableLeftName}/product/{tableRightName}")
     public Result cartesianProduct(@PathVariable String tableLeftName, @PathVariable String tableRightName) {
         return database.query(String.format("cartesian product %s by %s", tableLeftName, tableRightName));
     }

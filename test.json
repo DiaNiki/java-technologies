@@ -1,8 +1,8 @@
 {
-  "filePath": "test.json",
+  "filePath": "D:\\OneDrive\\Desktop\\java-technologies-master\\test.json",
   "tables": {
-    "schedule": {
-      "name": "schedule",
+    "trips": {
+      "name": "trips",
       "rows": [
         {
           "elements": {
@@ -69,17 +69,72 @@
         }
       }
     },
-    "cats": {
-      "name": "cats",
+    "coutries": {
+      "name": "coutries",
+      "rows": [
+        {
+          "elements": {
+            "data": {
+              "value": "24-08-1991...02-12-2018",
+              "column": "data"
+            },
+            "name": {
+              "value": "Ukraine",
+              "column": "name"
+            }
+          }
+        },
+        {
+          "elements": {
+            "data": {
+              "value": "04-07-1776...02-12-2018",
+              "column": "data"
+            },
+            "name": {
+              "value": "USA",
+              "column": "name"
+            }
+          }
+        },
+        {
+          "elements": {
+            "data": {
+              "value": "01-07-1867...02-12-2018",
+              "column": "data"
+            },
+            "name": {
+              "value": "Canada",
+              "column": "name"
+            }
+          }
+        }
+      ],
+      "columns": {
+        "data": {
+          "type": "DATE_RANGE",
+          "name": "data",
+          "nullAllowed": true,
+          "unique": false
+        },
+        "name": {
+          "type": "STR",
+          "name": "name",
+          "nullAllowed": true,
+          "unique": false
+        }
+      }
+    },
+    "students": {
+      "name": "students",
       "rows": [
         {
           "elements": {
             "name": {
-              "value": "Bob",
+              "value": "Diana",
               "column": "name"
             },
             "id": {
-              "value": "13",
+              "value": "1",
               "column": "id"
             }
           }
@@ -87,11 +142,11 @@
         {
           "elements": {
             "name": {
-              "value": "Vasia",
+              "value": "Nadia",
               "column": "name"
             },
             "id": {
-              "value": "7",
+              "value": "2",
               "column": "id"
             }
           }
@@ -99,7 +154,7 @@
         {
           "elements": {
             "name": {
-              "value": "Unknown",
+              "value": "Inna",
               "column": "name"
             },
             "id": {
@@ -111,11 +166,11 @@
         {
           "elements": {
             "name": {
-              "value": "Kiriusha",
+              "value": "Kolia",
               "column": "name"
             },
             "id": {
-              "value": "1",
+              "value": "8",
               "column": "id"
             }
           }
@@ -133,42 +188,6 @@
           }
         }
       ],
-      "columns": {
-        "name": {
-          "type": "STR",
-          "name": "name",
-          "nullAllowed": true,
-          "unique": false
-        },
-        "id": {
-          "type": "INT",
-          "name": "id",
-          "nullAllowed": true,
-          "unique": false
-        }
-      }
-    },
-    "mytable": {
-      "name": "mytable",
-      "rows": [],
-      "columns": {
-        "name": {
-          "type": "STR",
-          "name": "name",
-          "nullAllowed": true,
-          "unique": false
-        },
-        "id": {
-          "type": "INT",
-          "name": "id",
-          "nullAllowed": true,
-          "unique": false
-        }
-      }
-    },
-    "students": {
-      "name": "students",
-      "rows": [],
       "columns": {
         "name": {
           "type": "STR",

@@ -110,8 +110,8 @@ public class Element implements Serializable {
                 Objects.equals(column, element.column);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(value, column);
-    }
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(value, column);
+//    }
 }

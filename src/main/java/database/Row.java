@@ -34,24 +34,24 @@ public class Row implements Serializable {
         }
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Row row = (Row) o;
-
-        if (row.getElements().size() != this.getElements().size()) return false;
-
-        for (Element element : this.getElements()) {
-            if (!row.getElements().contains(element)) return false;
-            if (!row.getElement(element.getColumn()).equals(element)) return false;
-        }
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(elements);
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        Row row = (Row) o;
+//
+//        if (row.getElements().size() != this.getElements().size()) return false;
+//
+//        for (Element element : this.getElements()) {
+//            if (!row.getElements().contains(element)) return false;
+//            if (!row.getElement(element.getColumn()).equals(element)) return false;
+//        }
+//
+//        return true;
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(elements);
+//    }
 }

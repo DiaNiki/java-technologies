@@ -148,8 +148,8 @@
         }
       }
     },
-    "mytable": {
-      "name": "mytable",
+    "students": {
+      "name": "students",
       "rows": [],
       "columns": {
         "name": {
@@ -166,19 +166,44 @@
         }
       }
     },
-    "students": {
-      "name": "students",
-      "rows": [],
+    "raccons": {
+      "name": "raccons",
+      "rows": [
+        {
+          "elements": {
+            "data": {
+              "value": "11-12-1998...30-6-2012",
+              "column": "data"
+            },
+            "name": {
+              "value": "23",
+              "column": "name"
+            }
+          }
+        },
+        {
+          "elements": {
+            "data": {
+              "value": "12-4-1998...12-9-2000",
+              "column": "data"
+            },
+            "name": {
+              "value": "katty",
+              "column": "name"
+            }
+          }
+        }
+      ],
       "columns": {
-        "name": {
-          "type": "STR",
-          "name": "name",
+        "data": {
+          "type": "DATE_RANGE",
+          "name": "data",
           "nullAllowed": true,
           "unique": false
         },
-        "id": {
-          "type": "INT",
-          "name": "id",
+        "name": {
+          "type": "STR",
+          "name": "name",
           "nullAllowed": true,
           "unique": false
         }

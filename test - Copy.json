@@ -1,5 +1,5 @@
 {
-  "filePath": "test.json",
+  "filePath": "D:\\OneDrive\\Desktop\\java-technologies-master\\test - Copy.json",
   "tables": {
     "trips": {
       "name": "trips",
@@ -69,6 +69,61 @@
         }
       }
     },
+    "coutries": {
+      "name": "coutries",
+      "rows": [
+        {
+          "elements": {
+            "data": {
+              "value": "24-08-1991...02-12-2018",
+              "column": "data"
+            },
+            "name": {
+              "value": "Ukraine",
+              "column": "name"
+            }
+          }
+        },
+        {
+          "elements": {
+            "data": {
+              "value": "04-07-1776...02-12-2018",
+              "column": "data"
+            },
+            "name": {
+              "value": "USA",
+              "column": "name"
+            }
+          }
+        },
+        {
+          "elements": {
+            "data": {
+              "value": "01-07-1867...02-12-2018",
+              "column": "data"
+            },
+            "name": {
+              "value": "Canada",
+              "column": "name"
+            }
+          }
+        }
+      ],
+      "columns": {
+        "data": {
+          "type": "DATE_RANGE",
+          "name": "data",
+          "nullAllowed": true,
+          "unique": false
+        },
+        "name": {
+          "type": "STR",
+          "name": "name",
+          "nullAllowed": true,
+          "unique": false
+        }
+      }
+    },
     "students": {
       "name": "students",
       "rows": [
@@ -133,24 +188,6 @@
           }
         }
       ],
-      "columns": {
-        "name": {
-          "type": "STR",
-          "name": "name",
-          "nullAllowed": true,
-          "unique": false
-        },
-        "id": {
-          "type": "INT",
-          "name": "id",
-          "nullAllowed": true,
-          "unique": false
-        }
-      }
-    },
-    "counties": {
-      "name": "countries",
-      "rows": [],
       "columns": {
         "name": {
           "type": "STR",

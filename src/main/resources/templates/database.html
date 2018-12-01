@@ -1,11 +1,46 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Serving Web Content</title>
+    <title>My Database</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
+        function populateResult(res) {
+            $('#result').empty();
+            $('#result').append('<h3>Result: ' + res["status"] + '</h3>');
+            $('#result').append('<h4 color="red">' + res["report"] + '</h4>');
+            rows = res["rows"];
+            if (rows == null || rows.length == 0) {
+                $('#result').append('<h3>Nothing found</h3>');
+            } else {
+                resultTable = "";
+                resultTable += '<table border="1">';
+                resultTable += '<thead>';
+                resultTable += '<tr class="row100 head">';
+                rows[0]["elements"].forEach(function(el){
+                    resultTable += '<th class="cell100 column1">';
+                    resultTable += el["column"];
+                    resultTable += '</th>';
+                });
+                resultTable += '</tr>';
+                resultTable += '</thead>';
+                resultTable += '<tbody>';
+                rows.forEach(function(row){
+                    resultTable += '<tr class="row100 body">';
+                    row["elements"].forEach(function(el){
+                        resultTable += '<td class="cell100 column1">';
+                        resultTable += el["value"];
+                        resultTable += '</td>';
+                    });
+                    resultTable += '</tr>';
+                });
+                resultTable += '</tbody>';
+                resultTable += '</table>';
+                $('#result').append(resultTable);
+            }
+        }
+
         $(function() {
             $('button[type=submit]').click(function(e) {
 
@@ -16,7 +51,7 @@
                     url : 'database',
                     data : $('form[name=frm1]').serialize(),
                     success : function(res) {
-                        $('#result').text(JSON.stringify(res, null, 2));
+                        populateResult(res);
                     }
                 })
             });
@@ -29,6 +64,6 @@
         Query: <input type="text" name="query" value=""><br>
         <button type="submit">Run</button>
     </form>
-    <pre id="result"></pre>
+    <div id="result"></div>
 </body>
 </html>
