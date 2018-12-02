@@ -26,6 +26,11 @@ public class Database {
 
     public void setFilePath(String value) { filePath = value; }
 
+    public Collection<Column> getTableColumns(String name) throws Exception {
+        if (!tables.containsKey(name)) throw new Exception(String.format("A table with the name '%s' doesn't exist", name));
+        return tables.get(name).getColumns();
+    }
+
     public void createTable(String name, Collection<Column> columns) throws Exception {
         if (tables.containsKey(name)) throw new Exception(String.format("A table with the name '%s' already exists", name));
         tables.put(name, new Table(name, columns));

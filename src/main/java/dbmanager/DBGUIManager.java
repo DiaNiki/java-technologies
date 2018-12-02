@@ -20,6 +20,7 @@ class DBGUIManager extends JFrame {
     private final DefaultListModel tableListModel = new DefaultListModel();
     private final JLabel resultMessage = new JLabel();
     private final MyTableModel resultTableModel = new MyTableModel();
+    private final JPanel tableControlPanel = new JPanel();
     private final JFileChooser fileChooser = new JFileChooser();
 
     DBGUIManager() {
@@ -84,7 +85,7 @@ class DBGUIManager extends JFrame {
             TableAddPanel tableAdd = new TableAddPanel();
             if (JOptionPane.showConfirmDialog(this, tableAdd,
                     "Enter data for the new table:", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                displayQueryResults(database.query(tableAdd.getDBQuery()));
+                displayQueryResults(database.query(tableAdd.getDBQuery()), false);
                 populateTableList();
             }
         });
@@ -97,7 +98,7 @@ class DBGUIManager extends JFrame {
             if (JOptionPane.showConfirmDialog(this,
                     "Are you sure you want to delete " + tableName + "?", "Please confirm",
                     JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                displayQueryResults(database.query("drop table " + tableName));
+                displayQueryResults(database.query("drop table " + tableName), false);
                 populateTableList();
             }
         });
@@ -108,7 +109,7 @@ class DBGUIManager extends JFrame {
                 return;
             }
             displayQueryResults(database.query(
-                    String.format("cartesian product %s by %s", tableNames.get(0), tableNames.get(1))));
+                    String.format("cartesian product %s by %s", tableNames.get(0), tableNames.get(1))), false);
         });
         menuAction.add(menuCreateTable);
         menuAction.add(menuDeleteTable);
@@ -134,7 +135,7 @@ class DBGUIManager extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (database != null) {
-                    displayQueryResults(database.query(queryTextField.getText()));
+                    displayQueryResults(database.query(queryTextField.getText()), false);
                     populateTableList();
                 }
             }
@@ -161,7 +162,7 @@ class DBGUIManager extends JFrame {
                 if (e.getClickCount() == 2) {
                     int index = tableList.locationToIndex(e.getPoint());
                     String tableName = tableListModel.getElementAt(index).toString();
-                    displayQueryResults(database.query("select * from " + tableName));
+                    displayQueryResults(database.query("select * from " + tableName), true);
                 }
             }
         });
@@ -180,6 +181,25 @@ class DBGUIManager extends JFrame {
         JScrollPane tableScroll = new JScrollPane(resultTable);
         resultTable.setFillsViewportHeight(true);
         resultPanel.add(BorderLayout.CENTER, tableScroll);
+        JButton addRowButton = new JButton("Add row");
+        addRowButton.addActionListener(e -> {
+            if  (database == null) {
+                JOptionPane.showMessageDialog(this, "No open database");
+                return;
+            }
+            String tableName = (String) tableList.getSelectedValue();
+            try {
+                RowAddPanel rowAdd = new RowAddPanel(tableName, database.getTableColumns(tableName));
+                if (JOptionPane.showConfirmDialog(this, rowAdd,
+                        "Enter data for the new row:", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                    displayQueryResults(database.query(rowAdd.getDBQuery()), false);
+                    populateTableList();
+                }
+            } catch (Exception ex) {}
+        });
+        tableControlPanel.add(addRowButton);
+        tableControlPanel.setVisible(false);
+        resultPanel.add(BorderLayout.SOUTH, tableControlPanel);
         return resultPanel;
     }
 
@@ -193,7 +213,9 @@ class DBGUIManager extends JFrame {
         }
     }
 
-    private void displayQueryResults(Result result) {
+    private void displayQueryResults(Result result, boolean isTableDisplayed) {
+        tableControlPanel.setVisible(isTableDisplayed);
+
         resultMessage.setText("<html>Result: " + result.getStatus() +
                 (result.getStatus() == Result.Status.FAIL  ? "<br/>" + result.getReport() : "") +
                 (result.getRows() == null || result.getRows().size() == 0 ? "<br/>Result rows empty" : "") +
