@@ -6,6 +6,10 @@
 
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
+    <link rel="stylesheet" href="https://colorlib.com/etc/tb/Table_Highlight_Vertical_Horizontal/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://colorlib.com/etc/tb/Table_Highlight_Vertical_Horizontal/css/main.css">
+    <link rel="stylesheet" href="https://colorlib.com/etc/tb/Table_Highlight_Vertical_Horizontal/css/util.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
         function populateResult(res) {
@@ -18,11 +22,13 @@
                 $('#resultMsg').append('<h3>Nothing found</h3>');
             } else {
                 resultTable = "";
-                resultTable += '<table border="1">';
+                resultTable += '<table data-vertable="ver2">';
                 resultTable += '<thead>';
                 resultTable += '<tr class="row100 head">';
+                columnIndex = 1;
                 rows[0]["elements"].forEach(function(el){
-                    resultTable += '<th class="cell100 column1">';
+                    resultTable += '<th class="column100 column' + columnIndex + '" data-column="column' + columnIndex + '">';
+                    columnIndex  += 1;
                     resultTable += el["column"];
                     resultTable += '</th>';
                 });
@@ -30,9 +36,11 @@
                 resultTable += '</thead>';
                 resultTable += '<tbody>';
                 rows.forEach(function(row){
-                    resultTable += '<tr class="row100 body">';
+                    resultTable += '<tr class="row100">';
+                    columnIndex = 1;
                     row["elements"].forEach(function(el){
-                        resultTable += '<td class="cell100 column1">';
+                        resultTable += '<td class="column100 column' + columnIndex + '" data-column="column' + columnIndex + '">';
+                        columnIndex += 1;
                         resultTable += el["value"];
                         resultTable += '</td>';
                     });
@@ -60,107 +68,6 @@
             });
         });
     </script>
-    <style>
-        body {
-            background: #fafafa url(http://jackrugile.com/images/misc/noise-diagonal.png);
-            color: #444;
-            font: 100%/30px 'Helvetica Neue', helvetica, arial, sans-serif;
-            text-shadow: 0 1px 0 #fff;
-        }
-
-        strong {
-            font-weight: bold;
-        }
-
-        em {
-            font-style: italic;
-        }
-
-        table {
-            background: #f5f5f5;
-            border-collapse: separate;
-            box-shadow: inset 0 1px 0 #fff;
-            font-size: 12px;
-            line-height: 24px;
-            margin: 30px auto;
-            text-align: left;
-            width: 800px;
-        }
-
-        th {
-            background: url(http://jackrugile.com/images/misc/noise-diagonal.png), linear-gradient(#777, #444);
-            border-left: 1px solid #555;
-            border-right: 1px solid #777;
-            border-top: 1px solid #555;
-            border-bottom: 1px solid #333;
-            box-shadow: inset 0 1px 0 #999;
-            color: #fff;
-            font-weight: bold;
-            padding: 10px 15px;
-            position: relative;
-            text-shadow: 0 1px 0 #000;
-        }
-
-        th:after {
-            background: linear-gradient(rgba(255,255,255,0), rgba(255,255,255,.08));
-            content: '';
-            display: block;
-            height: 25%;
-            left: 0;
-            margin: 1px 0 0 0;
-            position: absolute;
-            top: 25%;
-            width: 100%;
-        }
-
-        th:first-child {
-            border-left: 1px solid #777;
-            box-shadow: inset 1px 1px 0 #999;
-        }
-
-        th:last-child {
-            box-shadow: inset -1px 1px 0 #999;
-        }
-
-        td {
-            border-right: 1px solid #fff;
-            border-left: 1px solid #e8e8e8;
-            border-top: 1px solid #fff;
-            border-bottom: 1px solid #e8e8e8;
-            padding: 10px 15px;
-            position: relative;
-            transition: all 300ms;
-        }
-
-        td:first-child {
-            box-shadow: inset 1px 0 0 #fff;
-        }
-
-        td:last-child {
-            border-right: 1px solid #e8e8e8;
-            box-shadow: inset -1px 0 0 #fff;
-        }
-
-        tr {
-            background: url(http://jackrugile.com/images/misc/noise-diagonal.png);
-        }
-
-        tr:nth-child(odd) td {
-            background: #f1f1f1 url(http://jackrugile.com/images/misc/noise-diagonal.png);
-        }
-
-        tr:last-of-type td {
-            box-shadow: inset 0 -1px 0 #fff;
-        }
-
-        tr:last-of-type td:first-child {
-            box-shadow: inset 1px -1px 0 #fff;
-        }
-
-        tr:last-of-type td:last-child {
-            box-shadow: inset -1px -1px 0 #fff;
-        }
-    </style>
     <style>
         body {
             background: url('http://i.hizliresim.com/v4Qykv.png') no-repeat center center fixed;
@@ -262,7 +169,7 @@
             <button type="submit" class="button">Run</button>
         </form>
     </div>
-    <div id="result" style="margin-bottom: 80px"></div>
+    <div id="result" style="margin-bottom: 80px; margin-top: 20px" class="table100 ver2 m-b-110"></div>
     <div id="resultMsg" class="footer"></div>
 </body>
 </html>
